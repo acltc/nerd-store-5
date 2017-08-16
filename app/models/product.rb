@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+  belongs_to :supplier
+
   def sale_message
     # return a message(string) based on the price
     if price.to_f <= 2
