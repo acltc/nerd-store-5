@@ -51,3 +51,13 @@
 # product = Product.first # => instance of product
 # the_supplier_id = product.supplier_id # => an integer
 # Supplier.find_by(id: the_supplier_id) # => instance of supplier
+
+
+# make 6 new images, one for each row in my products table
+
+products = Product.all
+
+products.each do |product|
+  image = Image.new(url: Faker::Avatar.image, product_id: product.id)
+  image.save
+end

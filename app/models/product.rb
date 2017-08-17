@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :supplier
+  has_many :images
 
   def sale_message
     # return a message(string) based on the price

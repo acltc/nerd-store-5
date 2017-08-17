@@ -12,7 +12,7 @@
               <p>Price: <%= number_to_currency(product.price) %></p>
               <p>tax: <%= number_to_currency(product.tax) %></p>
               <p>total: <%= number_to_currency(product.total) %></p>
-              <a href="/products/<%= product.id %>" title="View Product"><img src="<%= product.image %>" alt="<%= product.name %>" class="img-responsive product_single_image"></a>
+              <a href="/products/<%= product.id %>" title="View Product"><img src="<%= product.images[0].url %>" alt="<%= product.name %>" class="img-responsive product_single_image"></a>
               <p>Description: <%= product.description %></p>
             </div>
           </div>
