@@ -1,0 +1,13 @@
+This is where the form to make an image is
+
+
+<%= form_tag "/images", method: :post do %>
+  <p>Add your image url here:<input type="text" name="url"></p>
+
+  <select name="product_id">
+  <% @products.each do |product| %>
+    <option value="<%= product.id %>"><%= product.name %></option>
+  <% end %>
+  </select>
+  <input type="submit" value="Make a new image">
+<% end %>
