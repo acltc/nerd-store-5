@@ -1,5 +1,10 @@
 class ProductsController < ApplicationController
   def index
+    if session[:page_count] == nil
+      session[:page_count] = 1
+    else
+      session[:page_count] += 1
+    end
     if params[:sort_order]
       @products = Product.order(:price => params[:sort_order])
     elsif params[:price_category] == 'discount'

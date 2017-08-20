@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+  has_many :orders
   belongs_to :supplier
   has_many :images
 
