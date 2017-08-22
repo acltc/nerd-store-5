@@ -1,16 +1,22 @@
 class ProductsController < ApplicationController
   def index
-    if session[:page_count] == nil
-      session[:page_count] = 1
-    else
-      session[:page_count] += 1
-    end
-    if params[:sort_order]
-      @products = Product.order(:price => params[:sort_order])
-    elsif params[:price_category] == 'discount'
-      @products = Product.where("price < ?", '4')
-    elsif params[:search_term]
-      @products = Product.where("name LIKE ?", "%#{params[:search_term]}%")
+    # if session[:page_count] == nil
+    #   session[:page_count] = 1
+    # else
+    #   session[:page_count] += 1
+    # end
+    # if params[:sort_order]
+    #   @products = Product.order(:price => params[:sort_order])
+    # elsif params[:price_category] == 'discount'
+    #   @products = Product.where("price < ?", '4')
+    # elsif params[:search_term]
+    #   @products = Product.where("name LIKE ?", "%#{params[:search_term]}%")
+    # else
+    #   @products = Product.all
+    # end
+    # code to filter by category
+    if params[:category]
+      @products = Category.find_by(name: params[:category]).products
     else
       @products = Product.all
     end
