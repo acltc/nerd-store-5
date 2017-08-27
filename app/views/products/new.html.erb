@@ -3,18 +3,26 @@
         <div class="col-sm-8 col-sm-offset-2">
           <div class="product_single">
             <h1>Create a new nerdy product:</h1>
+            <% if @product.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+                <ul>
+                <% @product.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
             <%= form_tag '/products', method: :post do %>
               <div>
-                Name: <input type="text" name="name">
+                Name: <input type="text" name="name" value="<%= @product.name %>">
               </div>
               <div>
-                Price: <input type="text" name="price">
+                Price: <input type="text" name="price" value="<%= @product.price %>">
               </div>
+
               <div>
-                Image: <input type="text" name="image">
-              </div>
-              <div>
-                Description: <input type="text" name="description"> 
+                Description: <input type="text" name="description" value="<%= @product.description %>">
               </div>
               <input type="submit" value="Process New Nerdiness">
             <% end %>
