@@ -1,0 +1,12 @@
+<h1>CHECKOUT PAGE</h1>
+
+<% @carted_products.each do |carted_product| %>
+
+  <p><%= carted_product.product.name %></p>
+  quantity:
+  <p><%= carted_product.quantity %></p>
+  <%= button_to "Remove product from cart", "/carted_products/#{carted_product.id}", method: :delete %>
+  <hr>
+<% end %>
+
+<%= button_to "Buy Now", "/orders", method: :post %>
