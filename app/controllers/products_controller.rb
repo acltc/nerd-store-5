@@ -27,13 +27,14 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    render "new.html.erb"
+    render "new"
   end
 
   def create
     @product = Product.new(
       name: params[:name],
       description: params[:description],
+      supplier_id: params[:supplier_id],
       # image: params[:image],
       price: params[:price]
     )
@@ -62,14 +63,19 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find_by(id: params[:id])
-    @product.update(
+    @product.assign_attributes(
       name: params[:name],
       description: params[:description],
-      image: params[:image],
+      # image: params[:image],
+      supplier_id: params[:supplier_id],
       price: params[:price]
     )
-    flash[:success] = "Product Updated"
-    redirect_to "/products/#{@product.id}"
+    if @product.save
+      flash[:success] = "Product Updated"
+      redirect_to "/products/#{@product.id}"
+    else
+      render 'edit.html.erb'
+    end
   end
 
   def destroy
