@@ -1,13 +1,26 @@
   <section>
-    <div class="row">    
+    <div class="row">
       <div class="col-sm-8 col-sm-offset-2">
         <div class="product_single">
             <h2><%= @product.name %></h2>
+            <p>Supplier: <%= @product.supplier.name %></p>
             <p>Price: <%= @product.price %></p>
-            <img src="<%= @product.image %>" alt="<%= @product.name %>" class="img-responsive">
+            <% @product.images.each do |image| %>
+              <img src="<%= image.url %>" alt="<%= @product.name %>" class="img-responsive">
+            <% end %>
             <p>Description: <%= @product.description %></p>
-            <%= link_to "Edit", "/products/#{@product.id}/edit", class: "btn btn-success" %>
-            <%= link_to "Delete", "/products/#{@product.id}", {method: :delete, class: "btn btn-danger" }%>
+            <% if current_user %>
+              <%= form_tag "/carted_products", method: :post do %>
+                <input type="text" name="input_quantity">
+                <input type="hidden" value="<%= @product.id %>" name="input_product_id">
+                <input type="submit" value="Add to cart">
+              <% end %>
+            <% end %>
+
+            <% if current_user && current_user.admin %>
+              <%= link_to "Edit", "/products/#{@product.id}/edit", class: "btn btn-success" %>
+              <%= link_to "Delete", "/products/#{@product.id}", {method: :delete, class: "btn btn-danger" }%>
+            <% end %>
         </div>
       </div>
     </div>

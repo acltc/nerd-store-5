@@ -1,0 +1,18 @@
+Here is the order you made
+
+<p>Here is the order id</p>
+<p><%= @order.id + 3456789  %></p>
+<p>Here is the order quantity</p>
+
+subtotal
+<p><%= @order.subtotal %></p>
+tax
+<p><%= @order.tax %></p>
+total
+<p><%= @order.total %></p>
+
+<hr>
+<% @order.carted_products.each do |carted_product| %>
+  <p>name: <%= carted_product.product.name %></p>
+  <p>quantity: <%= carted_product.quantity %></p>
+<% end %>

@@ -3,21 +3,7 @@
         <div class="col-sm-8 col-sm-offset-2">
           <div class="product_single">
             <h1>Create a new nerdy product:</h1>
-            <%= form_tag '/products', method: :post do %>
-              <div>
-                Name: <input type="text" name="name">
-              </div>
-              <div>
-                Price: <input type="text" name="price">
-              </div>
-              <div>
-                Image: <input type="text" name="image">
-              </div>
-              <div>
-                Description: <input type="text" name="description"> 
-              </div>
-              <input type="submit" value="Process New Nerdiness">
-            <% end %>
+              <%= render 'form', url: "/products", verb: :post %>
           </div>
         </div>
       </div>

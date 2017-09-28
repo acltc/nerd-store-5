@@ -41,6 +41,7 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (6.7.7.1)
       execjs
+    bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -57,6 +58,8 @@ GEM
     concurrent-ruby (1.0.5)
     erubis (2.7.0)
     execjs (2.7.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     ffi (1.9.18)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -162,9 +165,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.2)
+  faker
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

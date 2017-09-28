@@ -1,0 +1,30 @@
+ <% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <ul>
+    <% @product.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_tag url, method: verb do %>
+  <div>
+    Name: <input type="text" name="name" value="<%= @product.name %>">
+  </div>
+  <div>
+    Price: <input type="text" name="price" value="<%= @product.price %>">
+  </div>
+
+  <div>
+    Description: <input type="text" name="description" value="<%= @product.description %>">
+  </div>
+
+  <select name="supplier_id">
+    <% Supplier.all.each do |supplier| %>
+      <option value="<%= supplier.id %>"><%= supplier.name %></option>
+    <% end %>
+  </select>
+  <input type="submit" value="Process New Nerdiness">
+<% end %>
